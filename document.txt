@@ -1,0 +1,22 @@
+Want cryptographic security but miss the days of hand-signed letters and
+wax seals? Tired of staring at `a7f3b9c1...` and pretending you can tell
+it apart from `a7f3b9c2...`? What if your document signature was
+something you could actually *look at* — your name, rendered in living
+texture that shifts and shimmers differently for every document you sign?
+
+glyph-sig turns document signatures into deterministic ASCII art.
+
+The signer's name is rendered as large block letters using a BDF bitmap
+font. The fill characters that make up each letter encode a real Ed25519
+cryptographic signature and the signer's public key — all embedded
+directly in the visual texture. The name is always human-readable, but
+the pattern of characters changes if even a single byte of the document
+changes.
+
+The signature itself is the verification artifact — no separate hash or
+key file needs to be transmitted. A verifier extracts the fill characters
+in reading order, recovers the embedded Ed25519 signature and public key,
+and verifies the signature against the document.
+
+A simpler hash-based mode (no keypair) is also available for quick
+tamper-evident signatures where authentication is not required.
